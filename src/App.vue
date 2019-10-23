@@ -1,32 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app dark>
+    <Sidebar />
+    <Navbar />
+    <Main />
+  </v-app>
 </template>
 
+<script>
+import Sidebar from "./components/Layout/Sidebar";
+import Navbar from "./components/Layout/Navbar";
+import Main from "./components/Layout/Main";
+export default {
+  components: {
+    Sidebar,
+    Navbar,
+    Main
+  },
+  mounted(){
+    this.$store.dispatch("getAllApis");
+  }
+};
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.v-btn-toggle > .v-btn.v-size--default {
+  height: 56px !important;
 }
 
-#nav {
-  padding: 30px;
+.v-btn-toggle {
+  border-radius: 4px !important;  
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.v-list {
+  padding: 8px 0 0 0 !important;
 }
 </style>
